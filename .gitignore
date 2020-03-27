@@ -1,0 +1,7 @@
+nesmdb_tx1/
+*.pyc
+LakhNES-model/
+LakhNES-synth/
+LakhNES-synth3/
+data/.DS_Store
+.DS_Store

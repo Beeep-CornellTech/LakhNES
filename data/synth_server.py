@@ -3,21 +3,25 @@ from __future__ import print_function
 from tx1_midi import tx1_to_midi
 from tx2_midi import tx2_to_midi
 
-import nesmdb.convert
+#import nesmdb.convert
 from scipy.io.wavfile import write as wavwrite
-from SimpleXMLRPCServer import SimpleXMLRPCServer
+#from SimpleXMLRPCServer import SimpleXMLRPCServer #for python2
+from xmlrpc.server import SimpleXMLRPCServer #for python3
 
 def tx1_to_wav(tx1_fp, out_fp, midi_downsample_rate=None):
+  from midi2audio import FluidSynth
+  print(tx1_fp, out_fp)
   if midi_downsample_rate == 0:
     midi_downsample_rate = None
 
   print('(Rate {}) {}->{}'.format(midi_downsample_rate, tx1_fp, out_fp))
   with open(tx1_fp, 'r') as f:
     tx1 = f.read()
-  midi = tx1_to_midi(tx1)
-  wav = nesmdb.convert.midi_to_wav(midi, midi_downsample_rate)
-  wavwrite(out_fp, 44100, wav)
-  print('Done: {}'.format(wav.shape))
+  midi = tx1_to_midi(tx1,out_fp)
+  # midi to wav to be implemented
+  # wav = nesmdb.convert.midi_to_wav(midi)
+  # wavwrite(out_fp, 44100, midi)
+  # print('Done: {}'.format(wav.shape))
   return True
 
 

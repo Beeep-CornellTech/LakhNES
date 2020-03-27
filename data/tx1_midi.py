@@ -68,7 +68,7 @@ def midi_to_tx1(midi):
   return tx1
 
 
-def tx1_to_midi(tx1):
+def tx1_to_midi(tx1, out_fp):
   import pretty_midi
 
   tx1 = tx1.strip().splitlines()
@@ -147,9 +147,11 @@ def tx1_to_midi(tx1):
   # Create indicator for end of song
   eos = pretty_midi.TimeSignature(1, 1, nsamps / 44100.)
   midi.time_signature_changes.append(eos)
+  midi.write(out_fp)
 
   with tempfile.NamedTemporaryFile('rb') as mf:
     midi.write(mf.name)
     midi = mf.read()
+
 
   return midi
