@@ -412,6 +412,7 @@ def evaluate(eval_iter):
     with torch.no_grad():
         mems = tuple()
         for i, (data, target, seq_len) in enumerate(eval_iter):
+            print("seq_len",seq_len)
             if args.max_eval_steps > 0 and i >= args.max_eval_steps:
                 break
             ret = model(data, target, *mems)
