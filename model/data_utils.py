@@ -221,6 +221,7 @@ class Corpus(object):
             train_paths = glob.glob(train_path_pattern)
             # the vocab will load from file when build_vocab() is called
         elif self.dataset == 'nesmdb':
+            print("nesmdb path", path)
             train_paths = glob.glob(os.path.join(path, 'train', '*.txt'))
             valid_paths = glob.glob(os.path.join(path, 'valid', '*.txt'))
             test_paths = glob.glob(os.path.join(path, 'test', '*.txt'))
