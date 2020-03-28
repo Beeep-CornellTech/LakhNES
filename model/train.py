@@ -409,6 +409,7 @@ def evaluate(eval_iter):
 
     # Evaluation
     total_len, total_loss = 0, 0.
+    print("eval_iter", eval_iter)
     with torch.no_grad():
         mems = tuple()
         for i, (data, target, seq_len) in enumerate(eval_iter):
