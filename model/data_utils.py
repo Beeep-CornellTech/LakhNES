@@ -185,6 +185,7 @@ class LMMultiFileIterator(LMShuffledIterator):
 
         sents = []
         for path in self.paths:
+            print("path", path)
             sents.extend(self.vocab.encode_file(path, add_double_eos=True,
               augment_transpose=self.augment_transpose,
               augment_stretch=self.augment_stretch,
@@ -272,6 +273,7 @@ class Corpus(object):
                 kwargs['skip_short'] = True
                 kwargs['trim_padding'] = True
                 data_iter = LMMultiFileIterator(data, self.vocab, *args, **kwargs)
+                print(split, "data_iter.paths",data_iter.paths)
 
         return data_iter
 
