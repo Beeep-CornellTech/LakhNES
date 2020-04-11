@@ -1,14 +1,14 @@
 from collections import defaultdict
 
 INSTRUMENT_DATA = {
-        "DG": {'min_pitch': 18, "max_pitch": 108}, 
-        "AGP":{'min_pitch': 0, "max_pitch": 95}, 
-        "EBP":{'min_pitch': 19, "max_pitch": 88}, 
-        "OG": {'min_pitch': 12, "max_pitch": 103}, 
-        "EBF":{'min_pitch': 6, "max_pitch": 83}, 
-        "EGC":{'min_pitch': 5, "max_pitch": 100}, 
-        "AGS":{'min_pitch': 25, "max_pitch": 101}
-  }
+  "DG": {"min_pitch": 18, "max_pitch": 108}, 
+  "AGP": {"min_pitch": 3, "max_pitch": 95}, 
+  "EB": {"min_pitch": 6, "max_pitch": 76}, 
+  "OG": {"min_pitch": 23, "max_pitch": 103}, 
+  "RO": {"min_pitch": 22, "max_p    itch": 96}, 
+  "EGC": {"min_pitch": 37, "max_pitch": 100}, 
+  "AGS": {"min_pitch": 28, "max_pitch": 101}, 
+  "EP": {"min_pitch": 28, "max_pitch": 81}}
 
 ALLOWED_INSTRUMENTS = list(INSTRUMENT_DATA.keys())
 ALL_INSTRUMENTS_MINUS_DRUMS = ALLOWED_INSTRUMENTS.copy().remove('AGP') # all instruments except accoustic grand piano, which for some reason acts like a drumb
@@ -43,10 +43,10 @@ def nesmdb_switch_pulse(events):
   events_pulse_switched = []
   for event in events:
     tokens = event.split('_')
-    if tokens[0] == 'EBF':
-      tokens[0] = 'EBP'
-    elif tokens[0] == 'EBP':
-      tokens[0] = 'EBF'
+    if tokens[0] == 'DG':
+      tokens[0] = 'EGC'
+    elif tokens[0] == 'EGC':
+      tokens[0] = 'DG'
     events_pulse_switched.append('_'.join(tokens))
 
   return events_pulse_switched

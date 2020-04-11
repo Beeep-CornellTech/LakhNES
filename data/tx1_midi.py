@@ -14,7 +14,7 @@ def midi_to_tx1(midi):
     mf.seek(0)
     midi = pretty_midi.PrettyMIDI(mf.name)
 
-  ins_names = ['DG','OG','EGC', 'AGS','EBF','EBP','AGP']
+  ins_names = ['RO', 'EP', 'DG','AGP', 'OG','EB','EGC', 'AGS']
 
   instruments = sorted(midi.instruments, key=lambda x: ins_names.index(x.name))
   samp_to_events = defaultdict(list)
@@ -75,21 +75,23 @@ def tx1_to_midi(tx1):
   nsamps = sum([int(x.split('_')[1]) for x in tx1 if x[:2] == 'WT'])
 
   GOOD_INSTRUMENTS = {
+    'Church Organ': 19,
+    'Electric Piano 1': 4,
     'Distortion Guitar': 30,
     'Acoustic Grand Piano': 0, # AKA Drums...don't ask me why
     'Overdriven Guitar': 29,
-    'Electric Bass (finger)': 33,
     'Electric Bass (pick)': 34,
     'Electric Guitar (clean)':  27,
     "Acoustic Guitar (steel)": 25,
     }
 
   CHANNELS_TO_NEW_NAMES = {
+    19: 'RO',
+    4: 'EP',
     30: 'DG',
     0: 'AGP',
     29: 'OG',
-    33: 'EBF',
-    34: 'EBP',
+    34: 'EB',
     27: 'EGC',
     25: 'AGS'
 }
