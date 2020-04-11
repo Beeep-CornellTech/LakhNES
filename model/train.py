@@ -204,6 +204,10 @@ va_iter = corpus.get_iterator('valid', eval_batch_size, args.eval_tgt_len,
 te_iter = corpus.get_iterator('test', eval_batch_size, args.eval_tgt_len,
     device=device, ext_len=args.ext_len)
 
+for i, (data, target, seq_len) in enumerate(va_iter):
+    print("i",i)
+    print("data, target, seq_len", data, target, seq_len)
+
 # adaptive softmax / embedding
 cutoffs, tie_projs = [], [False]
 if args.adaptive:
@@ -412,6 +416,7 @@ def evaluate(eval_iter):
     with torch.no_grad():
         mems = tuple()
         for i, (data, target, seq_len) in enumerate(eval_iter):
+            print("seq_len",seq_len)
             if args.max_eval_steps > 0 and i >= args.max_eval_steps:
                 break
             ret = model(data, target, *mems)
@@ -437,6 +442,7 @@ def train():
         mems = tuple()
     train_iter = tr_iter.get_varlen_iter() if args.varlen else tr_iter
     for batch, (data, target, seq_len) in enumerate(train_iter):
+        print("batch", batch)
         model.zero_grad()
         if args.batch_chunk > 1:
             data_chunks = torch.chunk(data, args.batch_chunk, 1)
@@ -547,6 +553,7 @@ eval_start_time = time.time()
 # At any point you can hit Ctrl + C to break out of training early.
 try:
     for epoch in itertools.count(start=1):
+        print("epoch", epoch)
         train()
         if train_step == args.max_step:
             logging('-' * 100)
