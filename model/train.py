@@ -204,9 +204,9 @@ va_iter = corpus.get_iterator('valid', eval_batch_size, args.eval_tgt_len,
 te_iter = corpus.get_iterator('test', eval_batch_size, args.eval_tgt_len,
     device=device, ext_len=args.ext_len)
 
-for i, (data, target, seq_len) in enumerate(va_iter):
+"""for i, (data, target, seq_len) in enumerate(va_iter):
     print("i",i)
-    print("data, target, seq_len", data, target, seq_len)
+    print("data, target, seq_len", data, target, seq_len)"""
 
 # adaptive softmax / embedding
 cutoffs, tie_projs = [], [False]
@@ -416,7 +416,7 @@ def evaluate(eval_iter):
     with torch.no_grad():
         mems = tuple()
         for i, (data, target, seq_len) in enumerate(eval_iter):
-            print("seq_len",seq_len)
+            #print("seq_len",seq_len)
             if args.max_eval_steps > 0 and i >= args.max_eval_steps:
                 break
             ret = model(data, target, *mems)
