@@ -5,7 +5,7 @@ INSTRUMENT_DATA = {
   "AGP": {"min_pitch": 3, "max_pitch": 95}, 
   "EB": {"min_pitch": 6, "max_pitch": 76}, 
   "OG": {"min_pitch": 23, "max_pitch": 103}, 
-  "RO": {"min_pitch": 22, "max_p    itch": 96}, 
+  "RO": {"min_pitch": 22, "max_pitch": 96}, 
   "EGC": {"min_pitch": 37, "max_pitch": 100}, 
   "AGS": {"min_pitch": 28, "max_pitch": 101}, 
   "EP": {"min_pitch": 28, "max_pitch": 81}}
