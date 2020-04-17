@@ -1,14 +1,14 @@
 from collections import defaultdict
 
 INSTRUMENT_DATA = {
-  "DG": {"min_pitch": 18, "max_pitch": 108}, 
-  "AGP": {"min_pitch": 3, "max_pitch": 95}, 
-  "EB": {"min_pitch": 6, "max_pitch": 76}, 
-  "OG": {"min_pitch": 23, "max_pitch": 103}, 
-  "RO": {"min_pitch": 22, "max_pitch": 96}, 
-  "EGC": {"min_pitch": 37, "max_pitch": 100}, 
-  "AGS": {"min_pitch": 28, "max_pitch": 101}, 
-  "EP": {"min_pitch": 28, "max_pitch": 81}}
+  "DG": {"min_pitch": 0, "max_pitch": 108}, 
+  "AGP": {"min_pitch": 0, "max_pitch": 108}, 
+  "EB": {"min_pitch": 6, "max_pitch": 86}, 
+  "OG": {"min_pitch": 0, "max_pitch": 119}, 
+  "RO": {"min_pitch": 0, "max_pitch": 120}, 
+  "EGC": {"min_pitch": 11, "max_pitch": 112}, 
+  "AGS": {"min_pitch": 0, "max_pitch": 101}, 
+  "EP": {"min_pitch": 28, "max_pitch": 91}}
 
 ALLOWED_INSTRUMENTS = list(INSTRUMENT_DATA.keys())
 ALL_INSTRUMENTS_MINUS_DRUMS = ALLOWED_INSTRUMENTS.copy().remove('AGP') # all instruments except accoustic grand piano, which for some reason acts like a drumb
