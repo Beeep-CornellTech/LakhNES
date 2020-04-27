@@ -14,7 +14,7 @@ def midi_to_tx1(midi):
     mf.seek(0)
     midi = pretty_midi.PrettyMIDI(mf.name)
 
-  ins_names = ['AS','VP','EP','AGP','FB','VO','AB']
+  ins_names = ['AGP','AB','TP','EGJ','AS','TS','TB',]
 
   instruments = sorted(midi.instruments, key=lambda x: ins_names.index(x.name))
   samp_to_events = defaultdict(list)
@@ -108,7 +108,7 @@ def tx1_to_midi(tx1):
       if tokens[1] == 'NOTEON':
         if old_pitch is not None:
           ins.notes.append(pretty_midi.Note(
-              velocity=127,
+              velocity=55,
               pitch=old_pitch,
               start=name_to_start[name] / 44100.,
               end=samp / 44100.))
@@ -117,7 +117,7 @@ def tx1_to_midi(tx1):
       else:
         if old_pitch is not None:
           ins.notes.append(pretty_midi.Note(
-              velocity=127,
+              velocity=45,
               pitch=name_to_pitch[name],
               start=name_to_start[name] / 44100.,
               end=samp / 44100.))
