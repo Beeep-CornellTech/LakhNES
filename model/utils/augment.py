@@ -8,6 +8,7 @@ INSTRUMENT_DATA = {
   "TS": {"min_pitch": 32, "max_pitch": 96}, 
   "TB": {"min_pitch": 25, "max_pitch": 90}, 
   "TP": {"min_pitch": 29, "max_pitch": 106}}
+}
 
 ALLOWED_INSTRUMENTS = list(INSTRUMENT_DATA.keys())
 ALL_INSTRUMENTS_MINUS_DRUMS = ALLOWED_INSTRUMENTS.copy()#.remove('AGP') # all instruments except accoustic grand piano, which for some reason acts like a drumb
