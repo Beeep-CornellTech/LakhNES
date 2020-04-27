@@ -1,17 +1,16 @@
 from collections import defaultdict
 
 INSTRUMENT_DATA = {
-  "DG": {"min_pitch": 0, "max_pitch": 108}, 
-  "AGP": {"min_pitch": 0, "max_pitch": 108}, 
-  "EB": {"min_pitch": 6, "max_pitch": 86}, 
-  "OG": {"min_pitch": 0, "max_pitch": 119}, 
-  "RO": {"min_pitch": 0, "max_pitch": 120}, 
-  "EGC": {"min_pitch": 11, "max_pitch": 112}, 
-  "AGS": {"min_pitch": 0, "max_pitch": 101}, 
-  "EP": {"min_pitch": 28, "max_pitch": 91}}
+ {"AB": {"min_pitch": 15, "max_pitch": 113}, 
+ "AGP": {"min_pitch": 0, "max_pitch": 127}, 
+ "EGJ": {"min_pitch": 13, "max_pitch": 125},
+  "AS": {"min_pitch": 5, "max_pitch": 126}, 
+  "TS": {"min_pitch": 32, "max_pitch": 96}, 
+  "TB": {"min_pitch": 25, "max_pitch": 90}, 
+  "TP": {"min_pitch": 29, "max_pitch": 106}}
 
 ALLOWED_INSTRUMENTS = list(INSTRUMENT_DATA.keys())
-ALL_INSTRUMENTS_MINUS_DRUMS = ALLOWED_INSTRUMENTS.copy().remove('AGP') # all instruments except accoustic grand piano, which for some reason acts like a drumb
+ALL_INSTRUMENTS_MINUS_DRUMS = ALLOWED_INSTRUMENTS.copy()#.remove('AGP') # all instruments except accoustic grand piano, which for some reason acts like a drumb
 
 _INSTAG2MIN = {}
 _INSTAG2MAX = {}
@@ -43,10 +42,10 @@ def nesmdb_switch_pulse(events):
   events_pulse_switched = []
   for event in events:
     tokens = event.split('_')
-    if tokens[0] == 'DG':
-      tokens[0] = 'EGC'
-    elif tokens[0] == 'EGC':
-      tokens[0] = 'DG'
+    if tokens[0] == 'TB':
+      tokens[0] = 'TP'
+    elif tokens[0] == 'TP':
+      tokens[0] = 'TB'
     events_pulse_switched.append('_'.join(tokens))
 
   return events_pulse_switched
